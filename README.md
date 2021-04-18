@@ -3,10 +3,6 @@
 
 
 
-**Timothée DURGEAUD**
-
-Documentation Xscene
-
 Ce document a pour rôle de présenter une spécification du langage Xscene, langage réalisé dans le cadre d’un projet pour le cours de Compilation pour l’Imagerie Numérique de l’ESIR. Il vient compléter un rapport concernant la création de ce langage.
 
 Dans ce document nous reviendrons donc plus en détail sur les différentes fonctionnalités du langage, sa structure et sa compilation via une application tierces.
@@ -67,8 +63,8 @@ Les options permettant de décrire une entité nécessite généralement l’uti
 |Type|Description |Syntaxe |  Exemples  | 
 |----------------|----------------|----------------|----------------|
 |Constante |Entier ou flottant pouvant être négatif |INT ou FLOAT |ex1: 1.0;  ex2: -2; ex3: 3; ex4: 3e4;|
-|Vect3D|Vecteur de dimension 3 dont les valeurs sont associés dans l’ordre à x, y et z |(constante,constante,constante) |(1.0,1.0,2.1)|
-|Vect2D|Vecteur de dimension 2 dont  les valeurs sont associés dans l’ordre à x et y  |(constante,constante) |(1,1)|
+|Vect3D|Vecteur de dimension 3 dont les valeurs sont associés dans l’ordre à x, y et z |(*constante*,*constante*,*constante*) |(1.0,1.0,2.1)|
+|Vect2D|Vecteur de dimension 2 dont  les valeurs sont associés dans l’ordre à x et y  |(*constante*,*constante*) |(1,1)|
 |String|Chaine de caractère, définit entre guillemets |“text” |“Hello World”|
 |ID|Chaine de caractère sans espace ne contenant que des lettres ou des chiffres |text |Hello|
 
@@ -110,13 +106,13 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
 |---|---|---|---|---|---|
 |colorTypeINT |Variable précisant que les valeurs des couleurs déclarés se trouvent dans l’intervalle [0,256] au lieu de [0,1]|Non obligatoire|false|colorTypeINT|				`<define mat:m1 colorTypeINT/>`|
-|Couleur ambiente |Couleur ambiente associé au matériau, ses valeurs doivent se trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|(1,1,1) (blanc par defaut ou noir si colorTypeINT est activé)|Ka: Vect3D|				`<define mat: m1 Ka: (0,1,0)/>`|
-|Couleur diffuse |Couleur diffuse associé au matériau, ses valeurs doivent se trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|Valeur de la couleur ambiante|Kd: Vect3D|`<define mat: m1 Kd: (0,1,0)/>`|
-|Couleur Spéculaire |Couleur spéculaire associé au matériau, ses valeurs doivent se  trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|Valeur de la couleur ambiante|Ks: Vect3D|`<define mat: m1 Ks: (0,1,0)/>`|
-|Indice de spécularité |Indice de spécularité du matériau, doit être compris dans [0,128]|Non obligatoire|1.0|shine: constante|`<define mat: m1 shine: 128/>`|
-|Chemin vers une texture |Chemin vers une texture associé au matériau. La texture doit être un fichier contenant une image|Non obligatoire|null (Pas de texture associé)|textFile: String|`<define mat: m1 textFile: “image.bmp”/>`|
-|Taille X de la texture |Taille de la texture selon l’axe X|Obligatoire seulement avec utilisation de textY, disponible seulement avec textFile|1.0|textX: constante|`<define mat :m1 textFile: “image.bmp” textX: 2.0 textY: 3.0/>`|
-|Taille Y de la texture |Taille de la texture selon l’axe Y|Obligatoire seulement avec utilisation de textX, disponible seulement avec textFile|1.0|textY: constante|`<define mat :m1 textFile: “image.bmp” textX: 2.0 textY: 3.0/>`|
+|Couleur ambiente |Couleur ambiente associé au matériau, ses valeurs doivent se trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|(1,1,1) (blanc par defaut ou noir si colorTypeINT est activé)|Ka: *Vect3D*|				`<define mat: m1 Ka: (0,1,0)/>`|
+|Couleur diffuse |Couleur diffuse associé au matériau, ses valeurs doivent se trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|Valeur de la couleur ambiante|Kd: *Vect3D*|`<define mat: m1 Kd: (0,1,0)/>`|
+|Couleur Spéculaire |Couleur spéculaire associé au matériau, ses valeurs doivent se  trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|Valeur de la couleur ambiante|Ks: *Vect3D*|`<define mat: m1 Ks: (0,1,0)/>`|
+|Indice de spécularité |Indice de spécularité du matériau, doit être compris dans [0,128]|Non obligatoire|1.0|shine: *constante*|`<define mat: m1 shine: 128/>`|
+|Chemin vers une texture |Chemin vers une texture associé au matériau. La texture doit être un fichier contenant une image|Non obligatoire|null (Pas de texture associé)|textFile: *String*|`<define mat: m1 textFile: “image.bmp”/>`|
+|Taille X de la texture |Taille de la texture selon l’axe X|Obligatoire seulement avec utilisation de textY, disponible seulement avec textFile|1.0|textX: *constante*|`<define mat :m1 textFile: “image.bmp” textX: 2.0 textY: 3.0/>`|
+|Taille Y de la texture |Taille de la texture selon l’axe Y|Obligatoire seulement avec utilisation de textX, disponible seulement avec textFile|1.0|textY: *constante*|`<define mat :m1 textFile: “image.bmp” textX: 2.0 textY: 3.0/>`|
 
 2. ## Shape
 
@@ -131,12 +127,12 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 *1ère alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
 |---|----------|---|---|---|---|
-|Chemin vers un fichier obj |Chemin vers un fichier .obj contenant une description d’une ou plusieurs géométries|Obligatoire si l’on n’utilise pas son alternative|Aucune|objectFile: String|`<define shape objectFile: “Object.obj”/>`|
+|Chemin vers un fichier obj |Chemin vers un fichier .obj contenant une description d’une ou plusieurs géométries|Obligatoire si l’on n’utilise pas son alternative|Aucune|objectFile: *String*|`<define shape objectFile: “Object.obj”/>`|
 
 *2nd alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe | 
 |---|---|---|---|---|
-|Identifiant|Identifiant de la géométrie créée|Obligatoire si l’on n’utilise pas son alternative|Aucune|shape: ID|
+|Identifiant|Identifiant de la géométrie créée|Obligatoire si l’on n’utilise pas son alternative|Aucune|shape: *ID*|
 |Vertex|Définition de vertex associé à la nouvelle géométrie, contenue dans des balises complète|1 définition minimum obligatoire dans cette alternative|Aucune|`<vertex vect3D/>`|
 |Normals|Définition de normals associé à la nouvelle géométrie, contenue dans des balises complète|1 définition minimum obligatoire dans cette alternative|Aucune|`<normal vect3D/>`|
 |Coordonnées de textures|Définition de coordonnées de texture associé à la nouvelle géométrie, contenue dans des balises complète|1 définition minimum obligatoire dans cette alternative|Aucune|`<txtCoord vect3D/>`|
@@ -176,9 +172,9 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *1ère alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|
+|---|----------|---|---|---|---|
 |Type Translation|Spécifie que l’animation créée sera de type translation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : tr|
-|Point visé|Point vers lequel la transformation va guider ses fils|Obligatoire pour cette alternative|Aucune|stop : Vect3D|
+|Point visé|Point vers lequel la transformation va guider ses fils|Obligatoire pour cette alternative|Aucune|stop : *Vect3D*|
 
 *Exemple pour la premiere alternative :* 
 
@@ -186,9 +182,9 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *2nd alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|
+|---|----------|---|---|---|---|
 |Type Rotation|Spécifie que  l’animation créée sera de type rotation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : rot|
-|Angle|Angle duquel la rotation aura tourné à la fin de l’animation|Obligatoire pour cette alternative|Aucune|ang: constante|
+|Angle|Angle duquel la rotation aura tourné à la fin de l’animation|Obligatoire pour cette alternative|Aucune|ang: *constante*|
 
 *Exemple pour la seconde alternative :* 
 
@@ -196,9 +192,9 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 	
 *3ème alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|
+|---|----------|---|---|---|---|
 |Type Scale|Spécifie que l’animation créée sera de type scale|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : sc|
-|Ratio|Ratio par lequel la mise à l’échelle aura augmenté à la fin de l’animation|Obligatoire pour cette alternative|Aucune|size : constante|
+|Ratio|Ratio par lequel la mise à l’échelle aura augmenté à la fin de l’animation|Obligatoire pour cette alternative|Aucune|size : *constante*|
 
 *Exemple pour la troisième alternative :* 
 
@@ -207,8 +203,8 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 *Options finales commune pour les 3 alternatives*
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
 |---|----------|---|---|---|---|
-|Temps de départ|Temps à partirduquel l’animationva commencé, en seconde.|Non obligatoire|0|start: constante|`<define anim:a1 type: rot ang: 30 start: 20 … />`|
-|Durée de l’animation|Durée de l’animation, en seconde.|Obligatoire|Aucune|time : constante|`<define anim:a1 type: sc size: 2 time: 3 />`|
+|Temps de départ|Temps à partirduquel l’animationva commencé, en seconde.|Non obligatoire|0|start: *constante*|`<define anim:a1 type: rot ang: 30 start: 20 … />`|
+|Durée de l’animation|Durée de l’animation, en seconde.|Obligatoire|Aucune|time : *constante*|`<define anim:a1 type: sc size: 2 time: 3 />`|
 
 ## IV. Node
 
@@ -250,169 +246,13 @@ Options par type :
 
 Les options disponible pour ce type sont les suivante, elles sont données dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas appelés, elle prendront leur valeur par défaut :
 
-Option
-
-Définition
-
-Statut
-
-Valeur par
-
-défaut
-
-Syntaxe
-
-Exemple
-
-angle
-
-Angle duquel les
-
-enfants du noeud
-
-vont tourner
-
-Obligatoire
-
-Aucune
-
-angle :
-
-<node name : “rot”
-
-constante
-
-type : Transform
-
-type : rotation
-
-angle : 20 >
-
-axe X
-
-Valeur x du
-
-vecteur selon
-
-lequel l’angle
-
-s’effectue
-
-Non
-
-obligatoire
-
-1.0 si aucun
-
-axeX :
-
-<node name : “rot”
-
-axe n’est
-
-constante
-
-axeY :
-
-type : Transform
-
-défini, 0
-
-type : rotation
-
-sinon
-
-angle : 20
-
-axeX : 2 >
-
-axe Y
-
-Valeur y du
-
-vecteur selon
-
-lequel l’angle
-
-s’effectue
-
-Non
-
-obligatoire
-
-0
-
-<node name : “rot”
-
-constante
-
-type : Transform
-
-type : rotation
-
-angle : 20
-
-axeY : 1 >
-
-axe Z
-
-Valeur z du
-
-vecteur selon
-
-lequel l’angle
-
-s’effectue
-
-Non
-
-obligatoire
-
-0
-
-“”
-
-axeZ :
-
-<node name : “rot”
-
-constante
-
-anim : ID
-
-type : Transform
-
-type : rotation
-
-angle : 20
-
-axeZ : 1 >
-
-Animation
-
-Animation associé Non
-
-à la transformation obligatoire
-
-récupéré par son
-
-<node name : “rot”
-
-type : Transform
-
-type : rotation
-
-angle : 20
-
-identifiant
-
-12
-
-
-
-
-
-anim : a1 >
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
+|---|----------|---|---|---|---|
+|angle|Angle duquel les enfants du noeud vont tourner|Obligatoire|Aucune|angle: *constante*|`<node name : “rot” type: Transform type: rotation angle: 20 >`|
+|axe X|Valeur x duvecteur selonlequel l’angle s’effectue|Non obligatoire|1.0 si aucun axe n’est défini, 0 sinon|axeX: *constante*|`<node name : “rot” type: Transform type: rotation angle: 20 axeX: 2 >`|
+|axe Y|Valeur y du vecteur selon lequel l’angle s’effectue|Non obligatoire|0|start: *constante*|`<define anim:a1 type: rot ang: 30 start: 20 … />`|
+|axe Z |Valeur z du vecteur selon lequel l’angle s’effectue|Non obligatoire|0|axeZ: *constante*|`<node name : “rot” type : Transform type : rotation angle: 20 axeZ: 1/>`|
+|Animation|Animation associé à la transformation récupéré par son identifiant|Non obligatoire|“”|anim : *ID*|`<node name: “rot” type: Transform type : rotation angle: 20/>`|
 
 \2. Translation
 
