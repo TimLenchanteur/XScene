@@ -7,43 +7,13 @@
 
 Documentation Xscene
 
-Ce document a pour rôle de présenter une spécification du langage Xscene,
+Ce document a pour rôle de présenter une spécification du langage Xscene, langage réalisé dans le cadre d’un projet pour le cours de Compilation pour l’Imagerie Numérique de l’ESIR. Il vient compléter un rapport concernant la création de ce langage.
 
-langage réalisé dans le cadre d’un projet pour le cours de Compilation pour
-
-l’Imagerie Numérique de l’ESIR. Il vient compléter un rapport concernant la
-
-création de ce langage.
-
-Dans ce document nous reviendrons donc plus en détail sur les différentes
-
-fonctionnalités du langage, sa structure et sa compilation via une application
-
-tierces.
+Dans ce document nous reviendrons donc plus en détail sur les différentes fonctionnalités du langage, sa structure et sa compilation via une application tierces.
 
 **1) Structure du langage**
 
-Xscene repose sur un principe similaire à XML. Des entité sont décrites dans des balises.
-
-En fonction de l’entité, des options sont proposé pour compléter sa description.
-
-Trois types de balises sont proposé par le langage, les balises complète, les balises de
-
-description et les balises de fin.
-
-Les balises de description et de fin sont connectés l’une à l’autre. La balise de description
-
-permet la description d’une entité en elle même et la balise de fin met fin à cette
-
-description. Entre ces deux balises peuvent se trouver d’autres balises, celle-ci décrivent
-
-les entités filles de l’entité décrite dans la balise de description qui les contient. Une
-
-entité fille doit forcément finir sa description avant la fin de la description de son entité
-
-mère. Ces balises ne peuvent pas exister seulement par elles-même, elles doivent
-
-forcément contenir des balises complète, soit directement soit via les enfants de l’entité.
+Xscene repose sur un principe similaire à XML. Des entité sont décrites dans des balises. En fonction de l’entité, des options sont proposé pour compléter sa description. Trois types de balises sont proposé par le langage, les balises complète, les balises de description et les balises de fin. Les balises de description et de fin sont connectés l’une à l’autre. La balise de description permet la description d’une entité en elle même et la balise de fin met fin à cette description. Entre ces deux balises peuvent se trouver d’autres balises, celle-ci décrivent les entités filles de l’entité décrite dans la balise de description qui les contient. Une entité fille doit forcément finir sa description avant la fin de la description de son entité mère. Ces balises ne peuvent pas exister seulement par elles-même, elles doivent forcément contenir des balises complète, soit directement soit via les enfants de l’entité.
 
 Ces deux balises se présente sous la forme suivante :
 
@@ -53,11 +23,7 @@ Ces deux balises se présente sous la forme suivante :
 </entité> : balise de fin
 
 
-Les balises complète sont des balises décrivant des entité ne pouvant pas contenir
-
-d’enfant. Elle peuvent exister sans les balises précédentes où être filles des entités
-
-décrite par celle-ci.
+Les balises complète sont des balises décrivant des entité ne pouvant pas contenir d’enfant. Elle peuvent exister sans les balises précédentes où être filles des entités décrite par celle-ci.
 
 Ces balises se présente sous la forme suivante :
 
@@ -65,12 +31,7 @@ Ces balises se présente sous la forme suivante :
 <entité options />
 
 
-
-L’encapsulation des balises indique la relation entre les entités. Deux entités soeur
-
-peuvent par exemple subir la même transformation si celle-ci est affecté à l’un de leur
-
-ancêtre (parent, grand-parent, etc..).
+L’encapsulation des balises indique la relation entre les entités. Deux entités soeur peuvent par exemple subir la même transformation si celle-ci est affecté à l’un de leur ancêtre (parent, grand-parent, etc..).
 
 Un document Xscene est composé de 4 partie :
 
