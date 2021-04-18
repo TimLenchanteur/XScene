@@ -7,9 +7,6 @@
 
 Documentation Xscene
 
-
-
-1.
 Ce document a pour rôle de présenter une spécification du langage Xscene,
 
 langage réalisé dans le cadre d’un projet pour le cours de Compilation pour
@@ -23,124 +20,6 @@ Dans ce document nous reviendrons donc plus en détail sur les différentes
 fonctionnalités du langage, sa structure et sa compilation via une application
 
 tierces.
-
-
-2.
-**Sommaire**
-
-**1) Structure du langage**
-
-**2) Eléments du langage**
-
-	I. Pré-requis
-
-	II. Scene
-
-	III. Define
-
-	A. Material
-
-7
-
-B. Shape
-
-8
-
-C. Animation
-
-10
-
-IV.
-
-V.
-
-Node
-
-11
-
-A. Group
-
-B. Transform
-
-\1. Rotation
-
-\2. Translation
-
-C. Scale
-
-Object
-
-11
-
-12
-
-12
-
-13
-
-13
-
-14
-
-A. Cône
-
-B. Cube
-
-15
-
-15
-
-16
-
-17
-
-18
-
-18
-
-19
-
-19
-
-C. Cylinder
-
-D. Sphere
-
-E. Teapot
-
-F. Tetrahedron
-
-G. Torus
-
-H. Defined
-
-VI.
-
-Sub-Tree
-
-20
-
-**3) Compilation**
-
-Initialisation
-
-Rendu
-
-**20**
-
-20
-
-22
-
-I.
-
-II.
-
-3
-
-
-
-
 
 **1) Structure du langage**
 
@@ -168,9 +47,11 @@ forcément contenir des balises complète, soit directement soit via les enfants
 
 Ces deux balises se présente sous la forme suivante :
 
+
 <entité options > : balise de description
 
 </entité> : balise de fin
+
 
 Les balises complète sont des balises décrivant des entité ne pouvant pas contenir
 
@@ -180,7 +61,10 @@ décrite par celle-ci.
 
 Ces balises se présente sous la forme suivante :
 
+
 <entité options />
+
+
 
 L’encapsulation des balises indique la relation entre les entités. Deux entités soeur
 
@@ -190,65 +74,30 @@ ancêtre (parent, grand-parent, etc..).
 
 Un document Xscene est composé de 4 partie :
 
-●
+● Corps du document :
 
-●
+	○ Le contenu de la scène décrite
 
-Corps du document :
+● Définition d’entités :
 
-○
+	○ Partie facultative
 
-Le contenu de la scène décrite
+	○ Définition d’entités appartenant à la scène mais n’étant pas contenu dans le langage par défaut
 
-Définition d’entités :
+	○ Se trouve au début du corps du document
 
-4
+● Définition de la scène :
 
+	○ Définition de la scène en elle même avec des entité du langage ou définit par l’utilisateur
 
+	○ Se trouve après la définition d’entités
 
+● Commentaires :
+	
+	○ Peuvent être partout dans le document
 
+	○ Syntaxe : // commentaire ou /\*commentaire\*/
 
-○
-
-○
-
-Partie facultative
-
-Définition d’entités appartenant à la scène mais n’étant pas contenu dans le
-
-langage par défaut
-
-○
-
-Se trouve au début du corps du document
-
-●
-
-●
-
-Définition de la scène :
-
-○
-
-Définition de la scène en elle même avec des entité du langage ou définit par
-
-l’utilisateur
-
-○
-
-Se trouve après la définition d’entités
-
-Commentaires :
-
-○
-
-○
-
-Peuvent être partout dans le document
-
-Syntaxe : // commentaire ou /\*commentaire\*/
-
-Un exemple de document Xscene peut être :
 
 **2) Eléments du langage**
 
