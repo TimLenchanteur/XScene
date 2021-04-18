@@ -11,1074 +11,244 @@ Ce document a pour rôle de présenter une spécification du langage Xscene, lan
 
 Dans ce document nous reviendrons donc plus en détail sur les différentes fonctionnalités du langage, sa structure et sa compilation via une application tierces.
 
-**1) Structure du langage**
+# 1) Structure du langage
 
 Xscene repose sur un principe similaire à XML. Des entité sont décrites dans des balises. En fonction de l’entité, des options sont proposé pour compléter sa description. Trois types de balises sont proposé par le langage, les balises complète, les balises de description et les balises de fin. Les balises de description et de fin sont connectés l’une à l’autre. La balise de description permet la description d’une entité en elle même et la balise de fin met fin à cette description. Entre ces deux balises peuvent se trouver d’autres balises, celle-ci décrivent les entités filles de l’entité décrite dans la balise de description qui les contient. Une entité fille doit forcément finir sa description avant la fin de la description de son entité mère. Ces balises ne peuvent pas exister seulement par elles-même, elles doivent forcément contenir des balises complète, soit directement soit via les enfants de l’entité.
 
 Ces deux balises se présente sous la forme suivante :
 
-
-<entité options > : balise de description
-
-</entité> : balise de fin
-
+	<entité options > : balise de description
+	</entité> : balise de fin
 
 Les balises complète sont des balises décrivant des entité ne pouvant pas contenir d’enfant. Elle peuvent exister sans les balises précédentes où être filles des entités décrite par celle-ci.
 
 Ces balises se présente sous la forme suivante :
 
-
-<entité options />
+	<entité options />
 
 
 L’encapsulation des balises indique la relation entre les entités. Deux entités soeur peuvent par exemple subir la même transformation si celle-ci est affecté à l’un de leur ancêtre (parent, grand-parent, etc..).
 
 Un document Xscene est composé de 4 partie :
 
-● Corps du document :
+- Corps du document :
 
-	○ Le contenu de la scène décrite
+	-- Le contenu de la scène décrite
 
-● Définition d’entités :
+- Définition d’entités :
 
-	○ Partie facultative
-
-	○ Définition d’entités appartenant à la scène mais n’étant pas contenu dans le langage par défaut
-
-	○ Se trouve au début du corps du document
-
-● Définition de la scène :
-
-	○ Définition de la scène en elle même avec des entité du langage ou définit par l’utilisateur
-
-	○ Se trouve après la définition d’entités
-
-● Commentaires :
+	-- Partie facultative
 	
-	○ Peuvent être partout dans le document
+	-- Définition d’entités appartenant à la scène mais n’étant pas contenu dans le langage par défaut
 
-	○ Syntaxe : // commentaire ou /\*commentaire\*/
+	-- Se trouve au début du corps du document
 
+- Définition de la scène :
 
-**2) Eléments du langage**
+	-- Définition de la scène en elle même avec des entité du langage ou définit par l’utilisateur
 
-Les balises permettent la définition d’entité appartenant à la scène, celle-ci sont décrit par
+	-- Se trouve après la définition d’entités
 
-des éléments du langage Xscene.
+- Commentaires :
+	
+	-- Peuvent être partout dans le document
 
-**I. Pré-requis**
-
-Les options permettant de décrire une entité nécessite généralement l’utilisation
-
-de certains type. Leur syntaxe est la suivante :
-
-Type
-
-Description
-
-Syntaxe
-
-Exemples
-
-Constante
-
-Entier ou flottant pouvant être INT ou FLOAT
-
-négatif
-
-ex 1 : 1.0
-
-ex 2 : -2
-
-ex 3 : 3
-
-ex 4 : 3e4
-
-(1.0,1.0,2.1)
-
-Vect3D
-
-Vecteur de dimension 3 dont (constante,constante,
-
-constante)
-
-les valeurs sont associés
-
-5
+	-- Syntaxe : *//commentaire* ou */\*commentaire\*/*
 
 
+# 2) Eléments du langage
 
+Les balises permettent la définition d’entité appartenant à la scène, celle-ci sont décrit par des éléments du langage Xscene.
 
+## I. Pré-requis
 
-dans l’ordre à x, y et z
+Les options permettant de décrire une entité nécessite généralement l’utilisation de certains type. Leur syntaxe est la suivante :
 
-Vect2D
+|Type|Description |Syntaxe |  Exemples  | 
+|----------------|----------------|----------------|----------------|
+|Constante |Entier ou flottant pouvant être négatif |INT ou FLOAT |ex1: 1.0;  ex2: -2; ex3: 3; ex4: 3e4;|
+|Vect3D|Vecteur de dimension 3 dont les valeurs sont associés dans l’ordre à x, y et z |(constante,constante,constante) |(1.0,1.0,2.1)|
+|Vect2D|Vecteur de dimension 2 dont  les valeurs sont associés dans l’ordre à x et y  |(constante,constante) |(1,1)|
+|String|Chaine de caractère, définit entre guillemets |“text” |“Hello World”|
+|ID|Chaine de caractère sans espace ne contenant que des lettres ou des chiffres |text |Hello|
 
-Vecteur de dimension 3 dont (constante,constante)
+Dans la suite lorsque la syntaxe présentera un type il sera mis en italique pour préciser qu’il doit être remplacé par la syntaxe qui lui est propre.
 
-les valeurs sont associés
+## II. Scene
 
-(1,1)
+**Partie du document associés :** Corps du documents
 
-dans l’ordre à x, y et z
+**Définition :** elément permettant l’initialisation de la scène il contient l'entièreté du document. Un document Xscene se doit de commencer par une balise de définition de scène et de finir par une balise de fin de scène. L’élément ne peut apparaître qu’une fois par scène.
 
-String
+**Syntaxe :**
 
-ID
-
-Chaine de caractère, définit
-
-entre guillemets
-
-“text”
-
-text
-
-“Hello
-
-World”
-
-Hello
-
-Chaine de caractère sans
-
-espace ne contenant que des
-
-lettres ou des chiffres
-
-Dans la suite lorsque la syntaxe présentera un type il sera mis en italique pour préciser
-
-qu’il doit être remplacé par la syntaxe qui lui est propre.
-
-**II. Scene**
-
-Partie du document associés : Corps du documents
-
-Définition : elément permettant l’initialisation de la scène il contient l'entièreté du
-
-document. Un document Xscene se doit de commencer par une balise de
-
-définition de scène et de finir par une balise de fin de scène. L’élément ne peut
-
-apparaître qu’une fois par scène.
-
-Syntaxe :
-
-<scene name : String>
-
-Corps du document
-
-</scene>
+	<scene name : String>
+		Corps du document
+	</scene>
 
 Avec String le nom de la scène.
 
-**III. Define**
+## III. Define
 
-Partie du document associés : Définition d’entités
+**Partie du document associés :** Définition d’entités
 
-Définition : elément permettant la définition d’élément qui ne sont pas contenu par
-
-défaut dans le langage. Il est contenu dans une balise complète. Il peut créer 3
-
-type d’élément.
+**Définition :** elément permettant la définition d’élément qui ne sont pas contenu par défaut dans le langage. Il est contenu dans une balise complète. Il peut créer 3 type d’élément.
 
 Syntaxe par type :
 
-6
+ 1. ##  Material
+
+**Définition :** Définition d’un nouveau matériau que l’on pourra associé à une géométrie dans la scène.
+
+**Syntaxe :**	
+
+	<define mat : ID **options** />
+
+Avec ID un identifiant par lequel l’élément sera plus tard appelé.
+Les options disponible pour ce type sont les suivante, elles sont données dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas appelés, elle prendront leur valeur par défaut :
+
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
+|---|---|---|---|---|---|
+|colorTypeINT |Variable précisant que les valeurs des couleurs déclarés se trouvent dans l’intervalle [0,256] au lieu de [0,1]|Non obligatoire|false|colorTypeINT|				`<define mat:m1 colorTypeINT/>`|
+|Couleur ambiente |Couleur ambiente associé au matériau, ses valeurs doivent se trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|(1,1,1) (blanc par defaut ou noir si colorTypeINT est activé)|Ka: Vect3D|				`<define mat: m1 Ka: (0,1,0)/>`|
+|Couleur diffuse |Couleur diffuse associé au matériau, ses valeurs doivent se trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|Valeur de la couleur ambiante|Kd: Vect3D|`<define mat: m1 Kd: (0,1,0)/>`|
+|Couleur Spéculaire |Couleur spéculaire associé au matériau, ses valeurs doivent se  trouver dans [0,1] ou [0,256] en fonction de colorTypeINT|Non obligatoire|Valeur de la couleur ambiante|Ks: Vect3D|`<define mat: m1 Ks: (0,1,0)/>`|
+|Indice de spécularité |Indice de spécularité du matériau, doit être compris dans [0,128]|Non obligatoire|1.0|shine: constante|`<define mat: m1 shine: 128/>`|
+|Chemin vers une texture |Chemin vers une texture associé au matériau. La texture doit être un fichier contenant une image|Non obligatoire|null (Pas de texture associé)|textFile: String|`<define mat: m1 textFile: “image.bmp”/>`|
+|Taille X de la texture |Taille de la texture selon l’axe X|Obligatoire seulement avec utilisation de textY, disponible seulement avec textFile|1.0|textX: constante|`<define mat :m1 textFile: “image.bmp” textX: 2.0 textY: 3.0/>`|
+|Taille Y de la texture |Taille de la texture selon l’axe Y|Obligatoire seulement avec utilisation de textX, disponible seulement avec textFile|1.0|textY: constante|`<define mat :m1 textFile: “image.bmp” textX: 2.0 textY: 3.0/>`|
+
+2. ## Shape
+
+**Définition :** Définition d’une nouvelle géométrie que l’on pourra associé à la scène.
+
+**Syntaxe :**
+
+	 <define shape **options** />
+
+Les options disponible pour ce type sont les suivante, elles sont données dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas appelés, elle prendront leur valeur par défaut. Les options presentés dans des tableaux séparés ne peuvent pas être utilisés ensemble :
+
+*1ère alternative :* 
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
+|---|----------|---|---|---|---|
+|Chemin vers un fichier obj |Chemin vers un fichier .obj contenant une description d’une ou plusieurs géométries|Obligatoire si l’on n’utilise pas son alternative|Aucune|objectFile: String|`<define shape objectFile: “Object.obj”/>`|
+
+*2nd alternative :* 
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe | 
+|---|---|---|---|---|
+|Identifiant|Identifiant de la géométrie créée|Obligatoire si l’on n’utilise pas son alternative|Aucune|shape: ID|
+|Vertex|Définition de vertex associé à la nouvelle géométrie, contenue dans des balises complète|1 définition minimum obligatoire dans cette alternative|Aucune|`<vertex vect3D/>`|
+|Normals|Définition de normals associé à la nouvelle géométrie, contenue dans des balises complète|1 définition minimum obligatoire dans cette alternative|Aucune|`<normal vect3D/>`|
+|Coordonnées de textures|Définition de coordonnées de texture associé à la nouvelle géométrie, contenue dans des balises complète|1 définition minimum obligatoire dans cette alternative|Aucune|`<txtCoord vect3D/>`|
+|Faces|Définition de 3 vertices associé à la nouvelle géométrie formant une face de celle-ci, contenue dans des balises complète. Chaque vertices contient dans l’ordre, le numéro de la définition d’un vertex, le numéro de la définition d’une vertex, le numéro de la définition d’une coordonnées de texture, dans l’ordre dans lesquels elles ont été définis plus tôt.|1 définition minimum obligatoire dans cette alternative|Aucune|`<face s1: constante /constante /constante s2: constante/ constante/ constante s3: constante/ constante/ constante/>`|
+
+*Exemple pour la seconde alternative :* 
+
+	 <define shape : triangle	
+		<vertex (0,0.5,0)/>
+		<vertex (-0.5,-0.5,0)/>
+		<vertex (0.5,-0.5,0)/>
+
+		<normal (0,1,0)/>
+		<normal (-1.41,-1.41,0)/>
+		<normal (1.41,-1.41,0)/>
+
+		<txtCoord (0,0)/>
+		<txtCoord (1,0)/>
+		<txtCoord (0,1)/>
+
+		<face s1: 0/0/0 s2: 1/1/1 s3: 2/2/2 />
+	/>
 
 
 
+3. ## Animation
 
+**Définition :** Définition d’une transformation que l’on pourra associé à une géométrie de la scène.
 
-A. Material
+**Syntaxe :**
 
-Définition : Définition d’un nouveau matériau que l’on pourra associé à une
-
-géométrie dans la scène.
-
-Syntaxe : <define mat : ID **options** />
+	<define anim: ID **options** />
 
 Avec ID un identifiant par lequel l’élément sera plus tard appelé.
 
-Les options disponible pour ce type sont les suivante, elles sont données
+Les options disponible pour ce type sont les suivante, elles sont données dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas appelés, elle prendront leur valeur par défaut. Les options presentés dans des tableaux séparés ne peuvent pas être utilisés ensemble :
 
-dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas
+*1ère alternative :* 
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe |
+|---|----------|---|---|---|---|
+|Type Translation|Spécifie que l’animation créée sera de type translation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : tr|
+|Point visé|Point vers lequel la transformation va guider ses fils|Obligatoire pour cette alternative|Aucune|stop : Vect3D|
 
-appelés, elle prendront leur valeur par défaut :
+*Exemple pour la premiere alternative :* 
 
-Option
+	<define anim:a1 type: tr stop: (0,1,0) .../>
 
-Définition
+*2nd alternative :* 
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe |
+|---|----------|---|---|---|---|
+|Type Rotation|Spécifie que  l’animation créée sera de type rotation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : rot|
+|Angle|Angle duquel la rotation aura tourné à la fin de l’animation|Obligatoire pour cette alternative|Aucune|ang: constante|
 
-Statut
+*Exemple pour la seconde alternative :* 
 
-Valeur par
+	<define anim:a1 type: rot ang : 20 .../>
+	
+*3ème alternative :* 
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe |
+|---|----------|---|---|---|---|
+|Type Scale|Spécifie que l’animation créée sera de type scale|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : sc|
+|Ratio|Ratio par lequel la mise à l’échelle aura augmenté à la fin de l’animation|Obligatoire pour cette alternative|Aucune|size : constante|
 
-défaut
+*Exemple pour la troisième alternative :* 
 
-Syntaxe
+	<define anim:a1 type: sc size : 2 .../>
 
-Exemple
+*Options finales commune pour les 3 alternatives*
+|Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
+|---|----------|---|---|---|---|
+|Temps de départ|Temps à partirduquel l’animationva commencé, en seconde.|Non obligatoire|0|start: constante|`<define anim:a1 type: rot ang: 30 start: 20 … />`|
+|Durée de l’animation|Durée de l’animation, en seconde.|Obligatoire|Aucune|time : constante|`<define anim:a1 type: sc size: 2 time: 3 />`|
 
-colorTypeINT Variable précisant
+## IV. Node
 
-que les valeurs
+**Partie du document associés :** Définition de la scène
 
-Non
+**Définition :** Element permettant la description d’un noeud du graphe de scène. Ses fils peuvent être des node, object ou sub-tree mais doivent se finir par un object ou sub-tree.
 
-obligatoire
+**Syntaxe :**
 
-false
-
-colorTypeIN
-
-<define mat : m1
-
-T
-
-colorTypeINT />
-
-des couleurs
-
-déclarés se
-
-trouvent dans
-
-l’intervalle [0,256]
-
-au lieu de [0,1]
-
-Couleur
-
-Couleur ambiente
-
-associé au
-
-matériau, ses
-
-Non
-
-obligatoire
-
-(1,1,1)
-
-Ka : Vect3D
-
-<define mat : m1
-
-ambiante
-
-Ka : (0,1,0) />
-
-(blanc ou
-
-valeurs doivent se
-
-trouver dans [0,1]
-
-ou [0,256] en
-
-fonction de
-
-noir si
-
-colorTypeIN
-
-T est activé)
-
-colorTypeINT
-
-Couleur
-
-Couleur diffuse
-
-associé au
-
-Non
-
-obligatoire
-
-Valeur de la
-
-Kd : Vect3D
-
-Ks : Vect3D
-
-<define mat : m1
-
-diffuse
-
-couleur
-
-Kd : (0,1,0) />
-
-matériau, ses
-
-valeurs doivent se
-
-trouver dans [0,1]
-
-ou [0,256] en
-
-fonction de
-
-ambiante
-
-colorTypeINT
-
-Couleur
-
-Couleur spéculaire Non
-
-associé au
-
-matériau, ses
-
-Valeur de la
-
-<define mat : m1
-
-Spéculaire
-
-obligatoire
-
-couleur
-
-Ks : (0,1,0) />
-
-ambiante
-
-valeurs doivent se
-
-trouver dans [0,1]
-
-7
-
-
-
-
-
-ou [0,256] en
-
-fonction de
-
-colorTypeINT
-
-Indice de
-
-Indice de
-
-Non
-
-obligatoire
-
-1.0
-
-shine :
-
-<define mat : m1
-
-spécularité
-
-spécularité du
-
-matériau, doit être
-
-compris dans
-
-[0,128]
-
-constante
-
-shine : 128 />
-
-Chemin vers
-
-Chemin vers une
-
-texture associé au obligatoire
-
-matériau. La
-
-texture doit être un
-
-fichier contenant
-
-une image
-
-Non
-
-null
-
-textFile :
-
-<define mat : m1
-
-une texture
-
-String
-
-textX :
-
-textFile :
-
-(Pas de
-
-“image.bmp”/>
-
-texture
-
-associé)
-
-Taille X de la Taille de la texture Obligatoire
-
-1.0
-
-<define mat : m1
-
-texture
-
-selon l’axe X
-
-seulement
-
-avec
-
-utilisation de
-
-textY,
-
-constante
-
-textFile :
-
-“image.bmp” textX
-
-: 2.0 textY : 3.0/>
-
-disponible
-
-seulement
-
-avec textFile
-
-Taille Y de la Taille de la texture Obligatoire
-
-1.0
-
-textY :
-
-<define mat : m1
-
-texture
-
-selon l’axe Y
-
-seulement
-
-avec
-
-constante
-
-textFile :
-
-“image.bmp” textX
-
-: 2.0 textY : 3.0/>
-
-utilisation de
-
-textY,
-
-disponible
-
-seulement
-
-avec textFile
-
-B. Shape
-
-Définition : Définition d’une nouvelle géométrie que l’on pourra associé à
-
-la scène.
-
-Syntaxe : <define shape **options** />
-
-Les options disponible pour ce type sont les suivante, elles sont données
-
-dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas
-
-appelés, elle prendront leur valeur par défaut. Les options séparés par la
-
-ligne en pointillé ne peuvent pas être utilisés ensemble :
-
-8
-
-
-
-
-
-Option
-
-Définition
-
-Statut
-
-Valeur par
-
-défaut
-
-Syntaxe
-
-Exemple
-
-Chemin
-
-.obj contenant une
-
-fichier obj description d’une ou
-
-plusieurs géométries
-
-Chemin vers un fichier Obligatoire
-
-Aucune
-
-objectFile :
-
-<define shape
-
-vers un
-
-si l’on
-
-n’utilise pas
-
-son
-
-String
-
-objectFile :
-
-“Object.obj” />
-
-alternative
-
-Identifiant Identifiant de la
-
-Obligatoire
-
-si l’on
-
-n’utilise pas
-
-son
-
-Aucune
-
-Aucune
-
-Aucune
-
-Aucune
-
-: ID
-
-<define shape :
-
-géométrie créée
-
-triangle
-
-<vertex (0,0.5,0)/>
-
-alternative
-
-<vertex
-
-Vertexs
-
-Définition de vertex
-
-associé à la nouvelle
-
-géométrie, contenue
-
-dans des balises
-
-complète
-
-1 définition
-
-minimum
-
-obligatoire
-
-dans cette
-
-alternative
-
-<vertex
-
-(-0.5,-0.5,0)/>
-
-<vertex
-
-vect3D/>
-
-(0.5,-0.5,0)/>
-
-<normal (0,1,0)/>
-
-<normal
-
-Normals
-
-Définition de normals
-
-associé à la nouvelle
-
-géométrie, contenue
-
-dans des balises
-
-complète
-
-1 définition
-
-minimum
-
-obligatoire
-
-dans cette
-
-alternative
-
-<normal
-
-vect3D/>
-
-(-1.41,-1.41,0)/>
-
-<normal
-
-(1.41,-1.41,0)/>
-
-Coordonn Définition de
-
-1 définition
-
-minimum
-
-obligatoire
-
-dans cette
-
-alternative
-
-<txtCoord
-
-ées de
-
-coordonnées de
-
-vect3D/>
-
-<txtCoord (0,0)/>
-
-<txtCoord (1,0)/>
-
-<txtCoord (0,1)/>
-
-<face s1 : 0/0/0 s2 :
-
-textures
-
-texture associé à la
-
-nouvelle géométrie,
-
-contenue dans des
-
-balises complète
-
-Faces
-
-Définition de 3 vertice
-
-associé à la nouvelle
-
-1 définition
-
-minimum
-
-Aucune
-
-<face s1 :
-
-constante/c
-
-onstante/co
-
-nstante
-
-s2 :
-
-constante/c
-
-onstante/co
-
-nstante
-
-s3 :
-
-constante/c
-
-onstante/co
-
-nstante
-
-/>
-
-1/1/1 s3 : 2/2/2 />
-
-/>
-
-géométrie formant une obligatoire
-
-face de celle-ci,
-
-dans cette
-
-alternative
-
-contenue dans des
-
-balises complète.
-
-Chaque vertices
-
-contient dans l’ordre,
-
-le numéro de la
-
-définition d’un vertex,
-
-le numéro de la
-
-définition d’une vertex,
-
-le numéro de la
-
-définition d’une
-
-coordonnées de
-
-9
-
-
-
-
-
-texture, dans l’ordre
-
-dans lesquels elles ont
-
-été définis plus tôt.
-
-C. Animation
-
-Définition : Définition d’une transformation que l’on pourra associé à une
-
-géométrie de la scène.
-
-Syntaxe : <define anim : ID **options** />
-
-Avec ID un identifiant par lequel l’élément sera plus tard appelé.
-
-Les options disponible pour ce type sont les suivante, elles sont données
-
-dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas
-
-appelés, elle prendront leur valeur par défaut. Les options séparés par la
-
-ligne en pointillé ne peuvent pas être utilisés ensemble :
-
-Option
-
-Définition
-
-Statut
-
-Valeur par
-
-défaut
-
-Syntaxe
-
-Exemple
-
-Type
-
-Spécifie que
-
-l’animation créée
-
-sera de type
-
-translation
-
-Obligatoire
-
-si l’on
-
-n’utilise pas
-
-ses
-
-Aucune
-
-type : tr
-
-<define
-
-Translatio
-
-anim:a1 type
-
-n
-
-: tr stop :
-
-(0,1,0) … />
-
-alternatives
-
-Point visé
-
-Point vers lequel la
-
-transformation va
-
-guider ses fils
-
-Obligatoire
-
-pour cette
-
-alternative
-
-Aucune
-
-Aucune
-
-stop : vect3D
-
-type : rot
-
-Type
-
-Spécifie que
-
-l’animation créée
-
-Obligatoire
-
-si l’on
-
-<define
-
-Rotation
-
-anim:a1 type
-
-sera de type rotation n’utilise pas
-
-: rot ang : 20
-
-ses
-
-… />
-
-alternatives
-
-Angle
-
-Angle duquel la
-
-rotation aura tourné pour cette
-
-à la fin de
-
-l’animation
-
-Obligatoire
-
-Aucune
-
-Aucune
-
-ang :
-
-constante
-
-alternative
-
-Type Scale Spécifie que
-
-l’animation créée
-
-sera de type scale
-
-Obligatoire
-
-si l’on
-
-n’utilise pas
-
-type : sc
-
-<define
-
-anim:a1 type
-
-: sc size : 2 …
-
-10
-
-
-
-
-
-ses
-
-/>
-
-alternatives
-
-Ratio
-
-Ratio par lequel la
-
-Obligatoire
-
-Aucune
-
-Size :
-
-mise à l’échelle aura pour cette
-
-augmenté à la fin de alternative
-
-l’animation
-
-constante
-
-Options finales commune pour les 3 alternatives
-
-Temps de
-
-Temps à partir
-
-duquel l’animation
-
-va commencé, en
-
-seconde.
-
-Non
-
-obligatoire
-
-0
-
-start :
-
-<define
-
-départ
-
-constante
-
-time :
-
-anim:a1 type
-
-: rot start :
-
-20 … />
-
-Durée de
-
-Durée de l’animation Obligatoire
-
-Aucune
-
-<define
-
-l’animation , en seconde.
-
-constante
-
-anim:a1 type
-
-: sc size : 2
-
-time : 3 />
-
-**IV. Node**
-
-Partie du document associés : Définition de la scène
-
-Définition : elément permettant la description d’un noeud du graphe de scène.
-
-Ses fils peuvent être des node, object ou sub-tree mais doivent se finir par un
-
-object ou sub-tree.
-
-Syntaxe :
-
-<node name : String **options** >
-
-…
-
-</node>
+	<node name : String **options** >
+	…
+	</node>
 
 Avec String une chaine de caractère par lequel l’élément sera plus tard appelé.
 
 Options par type :
 
-A. Group
+1. ## Group
 
-Définition : Définition d’une relation entre les enfants du noeud.
+**Définition :** Définition d’une relation entre les enfants du noeud.
 
-Syntaxe : <node name : String type : Group/>
+**Syntaxe :**
 
-11
+	<node name : String type : Group/>
 
+2. ## Transform
 
+**Définition :** Définition d’une transformation sur les enfants du noeud.
 
+**Syntaxe par type :**
 
+ ## *A. Rotation*
 
-B. Transform
+**Définition :** Définition d’une rotation sur les enfants du noeud.
 
-Définition : Définition d’une transformation sur les enfants du noeud.
+**Syntaxe :**
 
-Syntaxe par type :
+	<node name: String type: Transform type: rotation **options** />
 
-\1. Rotation
-
-Définition : Définition d’une rotation sur les enfants du noeud.
-
-Syntaxe : <node name : String type : Transform type :
-
-rotation **options** />
-
-Les options disponible pour ce type sont les suivante, elles sont
-
-données dans l’ordre par lequel elle doivent être appelées, si elles
-
-ne sont pas appelés, elle prendront leur valeur par défaut :
+Les options disponible pour ce type sont les suivante, elles sont données dans l’ordre par lequel elle doivent être appelées, si elles ne sont pas appelés, elle prendront leur valeur par défaut :
 
 Option
 
