@@ -7,20 +7,9 @@
 
 Documentation Xscene
 
-**Compilation pour l’Imagerie Numérique**
-
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-« J’atteste que ce travail est original, qu’il indique de façon appropriée tous les emprunts, et qu’il
-
-ait référence de façon appropriée à chaque source utilisée ».
-
-1
 
 
-
-
-
+1.
 Ce document a pour rôle de présenter une spécification du langage Xscene,
 
 langage réalisé dans le cadre d’un projet pour le cours de Compilation pour
@@ -35,41 +24,21 @@ fonctionnalités du langage, sa structure et sa compilation via une application
 
 tierces.
 
-2
 
-
-
-
-
+2.
 **Sommaire**
 
 **1) Structure du langage**
 
 **2) Eléments du langage**
 
-**4**
+	I. Pré-requis
 
-**5**
+	II. Scene
 
-I.
+	III. Define
 
-II.
-
-Pré-requis
-
-Scene
-
-5
-
-6
-
-III.
-
-Define
-
-6
-
-A. Material
+	A. Material
 
 7
 
