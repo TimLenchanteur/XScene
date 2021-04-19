@@ -172,7 +172,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *1ère alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|---|
+|---|----------|---|---|---|
 |Type Translation|Spécifie que l’animation créée sera de type translation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : tr|
 |Point visé|Point vers lequel la transformation va guider ses fils|Obligatoire pour cette alternative|Aucune|stop : *Vect3D*|
 
@@ -182,7 +182,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *2nd alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|---|
+|---|----------|---|---|---|
 |Type Rotation|Spécifie que  l’animation créée sera de type rotation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : rot|
 |Angle|Angle duquel la rotation aura tourné à la fin de l’animation|Obligatoire pour cette alternative|Aucune|ang: *constante*|
 
@@ -192,7 +192,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 	
 *3ème alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|---|
+|---|----------|---|---|---|
 |Type Scale|Spécifie que l’animation créée sera de type scale|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : sc|
 |Ratio|Ratio par lequel la mise à l’échelle aura augmenté à la fin de l’animation|Obligatoire pour cette alternative|Aucune|size : *constante*|
 
