@@ -1,11 +1,35 @@
 # XScene
- Language de description de scene 3D
 
+Le langage XScene a été créé dans le cadre d’un projet pour le cours de Compilation pour l’Imagerie Numérique de l’ESIR.
 
+Vous pouvez tester les performances de ce langage à partir de l'application présent dans ce dossier XScene.bat.
 
-Ce document a pour rôle de présenter une spécification du langage Xscene, langage réalisé dans le cadre d’un projet pour le cours de Compilation pour l’Imagerie Numérique de l’ESIR. Il vient compléter un rapport concernant la création de ce langage.
+Lorsque le programme vous demande *"Quelle scène souhaitez-vous charger ?"* vous pouvez renseigner un fichier .sc  présent dans le dossier data/scenesDescription pour charger une scène 3D dans la fenêtre qui se lance avec le programme. Il ne faut pas renseigner le .sc lorsque vous rentrez le nom du fichier.
 
-Dans ce document nous reviendrons donc plus en détail sur les différentes fonctionnalités du langage, sa structure et sa compilation via une application tierces.
+Dans ce projet des fichiers .sc  sont déjà présents qui décrivent les scènes suivantes :
+
+|Fichier|Objectif |
+|---|---|
+|scTestGeos|Afficher toute les géométries par défautproposés par Xscene|
+|scTestTransl|Afficher des géométries à plusieurs endroit|
+|scTestRot|Afficher une géométrie en rotation sous plusieurs angles, selon plusieurs axes|
+|scTestScl|Afficher une géométrie sous plusieurs échelles|
+|scTestSphere|Afficher une sphère sous différentes caractéristiques|
+|scTestCube|Plusieurs cubes avec différentes caractéristiques|
+|scTestCylindre|Plusieurs cylindres avec différentes caractéristiques|
+|scTestTeth|Afficher un Tetrahedron sans et avec mise à l'échelle|
+|scTestTeapot|Afficher une tasse de thé sous différentes caractéristiques|
+|scTestTorus|Afficher un torus sous différentes caractéristiques|
+|scTestSubTree|Afficher la même géométrie sous plusieurs transformation|
+|scTestShapeOBJ|Afficher un objet à partir de géométrie décrite dans un fichier obj|
+|scTestShapeMaterial|Appliquer des matériaux à des objet créer par l’utilisateur|
+|scTestShapeSBT|Afficher des géométries créés par l’utilisateur via des sub-tree|
+|scTestShapeAnim|Afficher des géométries créés par l’utilisateur via des sub-tree|
+|scTestCR_I|Test de composition de scènes|
+
+Vous pouvez voyager dans l'environnement 3D de l'application avec les touches wasd, les fleches directionnelles et en bougeant la souris tout en cliquant.  
+
+Dans la suite du document vous pourrez trouver une spécification du language XScene.
 
 # 1) Structure du langage
 
@@ -172,7 +196,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *1ère alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|
+|---|----------|---|---|---|---|
 |Type Translation|Spécifie que l’animation créée sera de type translation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : tr|
 |Point visé|Point vers lequel la transformation va guider ses fils|Obligatoire pour cette alternative|Aucune|stop : *Vect3D*|
 
@@ -182,7 +206,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *2nd alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|
+|---|----------|---|---|---|---|
 |Type Rotation|Spécifie que  l’animation créée sera de type rotation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : rot|
 |Angle|Angle duquel la rotation aura tourné à la fin de l’animation|Obligatoire pour cette alternative|Aucune|ang: *constante*|
 
@@ -192,7 +216,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 	
 *3ème alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|
+|---|----------|---|---|---|---|
 |Type Scale|Spécifie que l’animation créée sera de type scale|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : sc|
 |Ratio|Ratio par lequel la mise à l’échelle aura augmenté à la fin de l’animation|Obligatoire pour cette alternative|Aucune|size : *constante*|
 
