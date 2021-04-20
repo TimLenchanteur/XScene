@@ -25,7 +25,7 @@ Dans ce projet des fichiers .sc  sont déjà présents qui décrivent les scène
 |scTestShapeMaterial|Appliquer des matériaux à des objet créer par l’utilisateur|
 |scTestShapeSBT|Afficher des géométries créés par l’utilisateur via des sub-tree|
 |scTestShapeAnim|Afficher des géométries créés par l’utilisateur via des sub-tree|
-|scTestCR_I|Test de composition de scènes|
+|scTestCR_01 - scTestCR_05|Test de composition de scènes|
 
 Vous pouvez voyager dans l'environnement 3D de l'application avec les touches wasd, les fleches directionnelles et en bougeant la souris tout en cliquant.  
 
