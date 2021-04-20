@@ -196,7 +196,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *1ère alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|---|
+|---|----------|---|---|---|
 |Type Translation|Spécifie que l’animation créée sera de type translation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : tr|
 |Point visé|Point vers lequel la transformation va guider ses fils|Obligatoire pour cette alternative|Aucune|stop : *Vect3D*|
 
@@ -206,7 +206,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *2nd alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|---|
+|---|----------|---|---|---|
 |Type Rotation|Spécifie que  l’animation créée sera de type rotation|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : rot|
 |Angle|Angle duquel la rotation aura tourné à la fin de l’animation|Obligatoire pour cette alternative|Aucune|ang: *constante*|
 
@@ -216,7 +216,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 	
 *3ème alternative :* 
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe |
-|---|----------|---|---|---|---|
+|---|----------|---|---|---|
 |Type Scale|Spécifie que l’animation créée sera de type scale|Obligatoire si l’on n’utilise pas ses alternatives|Aucune|type : sc|
 |Ratio|Ratio par lequel la mise à l’échelle aura augmenté à la fin de l’animation|Obligatoire pour cette alternative|Aucune|size : *constante*|
 
@@ -226,7 +226,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *Options finales commune pour les 3 alternatives*
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
-|---|----------|---|---|---|---|
+|---|----------|---|---|---|
 |Temps de départ|Temps à partirduquel l’animationva commencé, en seconde.|Non obligatoire|0|start: *constante*|`<define anim:a1 type: rot ang: 30 start: 20 … />`|
 |Durée de l’animation|Durée de l’animation, en seconde.|Obligatoire|Aucune|time : *constante*|`<define anim:a1 type: sc size: 2 time: 3 />`|
 
