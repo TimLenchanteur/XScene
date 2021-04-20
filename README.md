@@ -226,7 +226,7 @@ Les options disponible pour ce type sont les suivante, elles sont données dans 
 
 *Options finales commune pour les 3 alternatives*
 |Option|Définition|Statut|Valeur par défaut  | Syntaxe | Exemple|
-|---|----------|---|---|---|
+|---|----------|---|---|---|---|
 |Temps de départ|Temps à partirduquel l’animationva commencé, en seconde.|Non obligatoire|0|start: *constante*|`<define anim:a1 type: rot ang: 30 start: 20 … />`|
 |Durée de l’animation|Durée de l’animation, en seconde.|Obligatoire|Aucune|time : *constante*|`<define anim:a1 type: sc size: 2 time: 3 />`|
 
